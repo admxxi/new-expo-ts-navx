@@ -2,27 +2,27 @@ import { Button, StyleSheet, Pressable } from 'react-native';
 import { Camera, CameraView } from 'expo-camera';
 import React, { useRef, useState, useEffect } from 'react';
 import { Audio } from 'expo-av'; // Import the Audio module
+import { useCameraPermissions } from "expo-camera";
 
 import { Text, View } from './Themed';
-import { useCameraPermissions } from "expo-camera";
 
 export default function TabOneScreen() {
   const qrLock = useRef(false);
   const [values, setQrCodeValues] = useState('');
   const [lastScan, setLastScan] = useState('');
   const cameraRef = useRef(null);
-  const [beep_a, setBeepA] = useState(null);
-  const [beep_b, setBeepB] = useState(null);
+  const [beep_a, setBeepA] = useState<Audio.Sound|null>(null);
+  const [beep_b, setBeepB] = useState<Audio.Sound|null>(null);
   const [soundFlag, setSoundFlag] = useState(0);
   const [permission, requestPermission] = useCameraPermissions();
   const isPermissionGranted = Boolean(permission?.granted);
 
   const preloadSoundA = async () => {
     console.log('Loading Sound A');
-    const { sound } = await Audio.Sound.createAsync(
+    const { sound: sound } = await Audio.Sound.createAsync(
       require('../assets/beep.mp3')
     );
-    setBeepA(sound);
+    if (sound) { setBeepA(sound) };
   };
 
   const preloadSoundB = async () => {
@@ -30,7 +30,7 @@ export default function TabOneScreen() {
     const { sound } = await Audio.Sound.createAsync(
       require('../assets/beep.mp3')
     );
-    setBeepB(sound);
+    if (sound) { setBeepB(sound) };
   };
 
   async function playSound() {
