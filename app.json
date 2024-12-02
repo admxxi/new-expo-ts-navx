@@ -19,10 +19,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.admxxi.snacke5c87da40f2e496988dd36139fdc80d3"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c0cbfbae-dbeb-410e-8419-ec3ceb5e48e0"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c0cbfbae-dbeb-410e-8419-ec3ceb5e48e0"
     }
   }
 }
